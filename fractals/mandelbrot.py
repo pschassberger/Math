@@ -7,14 +7,13 @@ import numpy as np
 from PIL import Image
 
 # image bounds
-PIXEL = 200
-WIDTH = 3
-HEIGHT = 3
-ITTER = 1000
-X1 = -2
-Y1 = -1.5
+
 
 def mandelbrot(c1, c2):
     x=y=0
-    for i in range(ITTER):
-        x, y = x*x - y*y + c1
+    for i in range(10):
+        dx, dy = x * x - y * y + c1, 2 * x * y + c2
+        x, y = dx, dy
+        print(x, y)
+
+mandelbrot(0.2, 0.1)
