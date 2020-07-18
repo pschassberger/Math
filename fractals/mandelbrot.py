@@ -11,8 +11,9 @@ WIDTH = 3
 HEIGHT = 3
 X1 = -2
 Y1 = -1.5
-PIXEL_SCALE = 200
-
+PIXEL_SCALE = 1000
+image_width = int(PIXEL_SCALE * WIDTH)
+image_height = int(PIXEL_SCALE * HEIGHT)
 # x and y coordiante calc
 def mandelbrot(c1, c2):
     x=y=0
@@ -21,11 +22,13 @@ def mandelbrot(c1, c2):
         if ((x * x) + (y * y)) > 4:
             return i + 1
     return 0
-# initial points, itterating from x1, y1
-
-image_width = int(PIXEL_SCALE * WIDTH)
-image_height = int(PIXEL_SCALE * HEIGHT)
-
+# color map for values
+def mandel_colors(v):
+    values = [0, 64, 128, 196]
+    b = values[v % 4] 
+    g = values[(v//4) % 4] 
+    r = values[(v//16) % 4]
+    return (r, g, b)
 # matrix to store pixels
 matrix = np.zeros((image_height, 
                     image_width,
@@ -41,7 +44,7 @@ def mandel_plot():
             c2 = Y1 + j / PIXEL_SCALE
             value = mandelbrot(c1, c2)
             if value:
-                matrix[j, i,] = (255,255,255)
+                matrix[j, i,] = mandel_colors(value)
     # plot matrix
     mandel_set = Image.fromarray(matrix)
     mandel_set.save('mandelbrotSet.png')
