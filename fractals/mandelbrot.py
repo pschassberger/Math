@@ -16,9 +16,9 @@ PIXEL_SCALE = 200
 # x and y coordiante calc
 def mandelbrot(c1, c2):
     x=y=0
-    for i in range(10):
-        x, y = x * x - y * y + c1, 2 * x * y + c2
-        if x * x + y * y > 4:
+    for i in range(1000):
+        x, y = (x * x) - (y * y) + c1, 2 * x * y + c2
+        if ((x * x) + (y * y)) > 4:
             return i + 1
     return 0
 # initial points, itterating from x1, y1
@@ -45,3 +45,5 @@ def mandel_plot():
     # plot matrix
     mandel_set = Image.fromarray(matrix)
     mandel_set.save('mandelbrotSet.png')
+# test it
+mandel_plot()
