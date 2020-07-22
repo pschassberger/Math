@@ -1,2 +1,7 @@
 # Math
-This program will be a simulation of the n body problem from classical mechanics. 
+These programs are mathematical theorems and physics problems. 
+Will Update as we go Along
+
+Mandelbrot Set
+
+N_Body Problem
