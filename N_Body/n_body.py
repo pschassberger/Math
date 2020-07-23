@@ -18,52 +18,33 @@ M_EARTH = 5.972e24
 M_JUPITER = 7.898e27
 AU = 150e6 
 
-dt = 0.1
+
 
 # calculation
-t = 0.0
-x = 0.5
-y = 0.0
-vy = 1.630
-vx = 0.0
 
 def calculations(time):
-    radii = np.sqrt(x**2 + y**2)
-    # acceleration
-    a_x = -x / radii**3
-    a_y = -y / radii**3
-    r_cube = 1 / radii**3
-    # store coordinates
-    x_pos=[]
-    y_pos=[]
-    radii_list=[]
-    r_cube_list=[]
-    ax_list=[]
-    ay_list=[]
-    # velocities
-    v_x = vx + a_x * radii
-    v_y = vy + a_y * radii
+    vy = 1.630
+    vx = 0.0
+    dt = 0.0
+    x, y = 0.5, 0.0
 
+    # t = 0
     for i in range(time):
-        x1 = x + v_x * dt
-        y1 = y + v_y * dt
-        radii1 = np.sqrt(x1**2 + y1**2)
-        r_cube1 = 1 / radii1**3
-        a_x1 = -x1 / radii1**3
-        a_y1 = -y1 / radii1**3
+        x, y = x + vx * dt, y + vy * dt
+        radii = np.sqrt(x**2 + y**2)
+        # acceleration
+        ax, ay = -x / radii**3, -y / radii**3
+        r_cube = 1 / radii**3
+        # time increment
+        dt += 0.05
+        vx, vy = vx + ax * dt, vy + ay * dt
+        dt += 0.05
 
-        x_pos.append(x1)
-        y_pos.append(y1)
-        radii_list.append(radii1)
-        r_cube_list.append(r_cube1)
-        ax_list.append(a_x1)
-        ay_list.append(a_y1)
 
-        dt += 0.1
 
-    print(x_pos, y_pos, radii_list, r_cube_list, ax_list, ay_list)
+    print(radii)
 
-calculations(10)
+calculations(3)
 
 
 
