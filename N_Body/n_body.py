@@ -9,7 +9,7 @@ mi(dv_iz / dt) = -G * mi * mj(zi - zj) / rij**3
 rij = sqrt((xi - xj)**2 + (yi - yj)**2 + (zi -zj)**2)
 '''
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Constants in SI
 GC = 6.673e-11
@@ -24,13 +24,14 @@ AU = 150e6
 
 def calculations(time):
     vy = 1.630
-    vx = 0.0
+    vx = -0.20
     dt = 0.0
     x, y = 0.5, 0.0
     radii = 0.5
     r_cube = 8.00
     ax = -4.0
     ay = 0.00
+    dt = 0.1
     tick = 0.1
     # dict to store values
     '''data_dict = {
@@ -59,37 +60,39 @@ def calculations(time):
     cube_val.append(r_cube)
     x_vel.append(vx)
     y_vel.append(vy)
-
     # itterate calculations
     for i in range(time):
         # x,y coords
-        dx = x_pos[i] + x_vel[i] * dt
+        dx = x_pos[i] + x_vel[i] * tick
         x_pos.append(dx)
-        dy = y_pos[i] + y_vel[i] * dt
+        dy = y_pos[i] + y_vel[i] * tick
         y_pos.append(dy)
         # raddii, accelerations
-        dradii = np.sqrt(x_pos[i]**2 + y_pos[i]**2)
-        dax = -x_pos[i] / r_val[i]**3
-        day = -y_pos[i] / r_val[i]**3
+        dradii = np.sqrt(x_pos[i+1]**2 + y_pos[i+1]**2)
         r_val.append(dradii)
+        # inverse of 3 cube
+        dr_cube = 1.0 / r_val[i+1]**3
+        cube_val.append(dr_cube)
+        # acceleration
+        dax = -x_pos[i+1] * cube_val[i+1]
+        day = -y_pos[i+1] * cube_val[i+1]
         x_accel.append(dax)
         y_accel.append(day)
-        # inverse of 3 cube
-        dr_cube = 1 / r_val[i]**3
-        cube_val.append(dr_cube)
+        
         # velocities
-        dt += 0.05
-        dvx = x_vel[i] + x_accel[i] * dt
-        dvy = y_vel[i] + y_accel[i] * dt
+        dvx = x_vel[i] + x_accel[i+1] * dt
+        dvy = y_vel[i] + y_accel[i+1] * dt
         x_vel.append(dvx)
         y_vel.append(dvy)
         dt += 0.05
 
         # fin
-    
+    # plot 
+    plt.scatter(x_pos, y_pos)
+    plt.ylim(-5, 5)
+    plt.xlim(-5, 5)
+    plt.show()
+    # print data
     print(x_pos, x_vel, x_accel)
-    #print(x, vx, ax, y, vy, ay, radii, r_cube, dt)
-calculations(1)
-
-
+calculations(4)
 
