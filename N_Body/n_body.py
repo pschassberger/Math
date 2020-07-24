@@ -27,6 +27,11 @@ def calculations(time):
     vx = 0.0
     dt = 0.0
     x, y = 0.5, 0.0
+    radii = 0.5
+    r_cube = 8.00
+    ax = -4.0
+    ay = 0.00
+    tick = 0.1
     # dict to store values
     '''data_dict = {
         'x_pos': [],
@@ -46,15 +51,6 @@ def calculations(time):
     r_val = []
     cube_val = []
     
-    x, y = x + vx * dt, y + vy * dt
-    radii = np.sqrt(x**2 + y**2)
-    # acceleration
-    ax, ay = -x / radii**3, -y / radii**3
-    r_cube = 1 / radii**3
-    # time increment
-    dt += 0.05
-    vx, vy = vx + ax * dt, vy + ay * dt
-    dt += 0.05
     x_pos.append(x)
     y_pos.append(y)
     r_val.append(radii)
@@ -87,14 +83,13 @@ def calculations(time):
         dvy = y_vel[i] + y_accel[i] * dt
         x_vel.append(dvx)
         y_vel.append(dvy)
-        # fin
         dt += 0.05
-        print(i)
 
-
-    #print(x_pos)
+        # fin
+    
+    print(x_pos, x_vel, x_accel)
     #print(x, vx, ax, y, vy, ay, radii, r_cube, dt)
-calculations(2)
+calculations(1)
 
 
 
