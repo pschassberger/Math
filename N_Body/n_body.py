@@ -63,9 +63,9 @@ def calculations(time):
     # itterate calculations
     for i in range(time):
         # x,y coords
-        dx = x_pos[i] + x_vel[i] * tick
+        dx = x_pos[i] + x_vel[i] * dt
         x_pos.append(dx)
-        dy = y_pos[i] + y_vel[i] * tick
+        dy = y_pos[i] + y_vel[i] * dt
         y_pos.append(dy)
         # raddii, accelerations
         dradii = np.sqrt(x_pos[i+1]**2 + y_pos[i+1]**2)
@@ -84,7 +84,7 @@ def calculations(time):
         dvy = y_vel[i] + y_accel[i+1] * dt
         x_vel.append(dvx)
         y_vel.append(dvy)
-        dt += 0.05
+        #dt += 0.05
 
         # fin
     # plot 
@@ -93,6 +93,6 @@ def calculations(time):
     plt.xlim(-5, 5)
     plt.show()
     # print data
-    print(x_pos, x_vel, x_accel)
-calculations(4)
+    print(x_pos)
+calculations(20)
 
