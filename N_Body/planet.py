@@ -13,15 +13,16 @@ class Planet:
         self.yvel = yvel
         self.zvel = zvel
         # position lists
-        self.x_pos_list = []
-        self.y_pos_list = []
-        self.z_pos_list = []
+        self.x_pos_list = [xpos]
+        self.y_pos_list = [ypos]
+        self.z_pos_list = [zpos]
         # velocity list
-        self.x_vel_list = []
-        self.x_vel_list = []
-        self.x_vel_list = []
+        self.x_vel_list = [xvel]
+        self.x_vel_list = [yvel]
+        self.x_vel_list = [zvel]
         # accelleration list
-        self.x_accel_list = []
-        self.y_accel_list = []
-        self.z_accel_list = []
+        self.x_accel_list = [xaccel]
+        self.y_accel_list = [yaccel]
+        self.z_accel_list = [zaccel]
     
+

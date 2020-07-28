@@ -17,15 +17,6 @@ earth = planet("Jupiter", M_JUPITER, 8*AU, 0, 0, 0, 1.63, 0, 0, 0, 0)
 def calculations(time, object1, object2):
     # time increment
     dt = 0.1
-    
-    x_pos1.append(planet.xpos)
-    y_pos.append(y)
-    r_val.append(radii)
-    x_accel.append(ax)
-    y_accel.append(ay)
-    cube_val.append(r_cube)
-    x_vel.append(vx)
-    y_vel.append(vy)
     # itterate calculations
     for i in range(time):
         # x,y coords
