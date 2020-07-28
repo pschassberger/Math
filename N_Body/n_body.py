@@ -11,13 +11,17 @@ AU = 150e6
 
 # construct planets
 sun = Planet("Sun", M_SUN, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-earth = Planet("Earth", M_EARTH, AU, 0.0, 0.0, -0.2, 460, 0.0, -4.0, 0.0, 0.0)
+earth = Planet("Earth", M_EARTH, AU, 0.0, 0.0, -0.2, 460, 0.0, -4.44e-17, 0.0, 0.0)
 
 # calculation
 def calculations(time, planet_1, planet_2):
     # time increment
-    dt = 100
+    dt = 3600
     radii_list=[]
+    dr_radii = np.sqrt((planet_1.x_pos_list[0] - planet_2.x_pos_list[0])**2 
+                        + (planet_1.y_pos_list[0] - planet_2.y_pos_list[0])**2
+                        + (planet_1.z_pos_list[0] - planet_2.z_pos_list[0])**2)
+    radii_list.append(dr_radii)
     rcube_inv_list=[]
     # itterate calculations
     for i in range(time):
@@ -45,8 +49,8 @@ def calculations(time, planet_1, planet_2):
         '''dradii = np.sqrt(x_pos[i+1]**2 + y_pos[i+1]**2 + z_pos[i+1]**2)
         r_val.append(dradii)'''
         # inverse of 3 cube
-        if radii_list[i] != 0.0:
-            rcube_inv = 1.0 / radii_list[i]**3
+        if radii_list[i+1] > 0.0:
+            rcube_inv = 1.0 / radii_list[i+1]**3
             rcube_inv_list.append(rcube_inv)
         else:
             rcube_inv_list.append(0)
@@ -91,15 +95,16 @@ def calculations(time, planet_1, planet_2):
         x_vel.append(dvx)
         y_vel.append(dvy)'''
 
-    print(planet_2.x_pos_list, planet_2.y_pos_list)
+    #print(planet_2.x_pos_list, planet_2.y_pos_list)
 
     # fin
     # plot 
-    '''plt.scatter(earth.x_pos_list, earth.y_pos_list)
+    plt.scatter(sun.x_pos_list, sun.y_pos_list, color="yellow")
+    plt.scatter(earth.x_pos_list, earth.y_pos_list, color="blue")
     plt.ylim(-2*AU, 2*AU)
     plt.xlim(-2*AU, 2*AU)
-    plt.show()'''
+    plt.show()
     
-calculations(20, sun, earth)
+calculations(365, sun, earth)
 
 
