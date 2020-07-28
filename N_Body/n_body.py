@@ -10,25 +10,15 @@ M_JUPITER = 7.898e27
 AU = 150e6 
 
 # construct objects
-sun = planet("Sun", M_SUN, 0, 0, 0, 0, 0, 0)
-earth = planet("Jupiter", M_JUPITER, 8*AU, 0, 0, 0, 1.63, 0)
+sun = planet("Sun", M_SUN, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+earth = planet("Jupiter", M_JUPITER, 8*AU, 0, 0, 0, 1.63, 0, 0, 0, 0)
 
 # calculation
 def calculations(time, object1, object2):
     # time increment
     dt = 0.1
-    # t = 0
-    x_pos = []
-    y_pos = []
-    z_pos = []
-    x_accel = []
-    y_accel = []
-    x_vel = []
-    y_vel = []
-    r_val = []
-    cube_val = []
     
-    '''x_pos1.append(planet.xpos)
+    x_pos1.append(planet.xpos)
     y_pos.append(y)
     r_val.append(radii)
     x_accel.append(ax)
@@ -61,7 +51,7 @@ def calculations(time, object1, object2):
         dvx = x_vel[i] + x_accel[i+1] * dt
         dvy = y_vel[i] + y_accel[i+1] * dt
         x_vel.append(dvx)
-        y_vel.append(dvy)'''
+        y_vel.append(dvy)
         
 
         # fin
