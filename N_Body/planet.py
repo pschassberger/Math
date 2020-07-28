@@ -18,8 +18,8 @@ class Planet:
         self.z_pos_list = [zpos]
         # velocity list
         self.x_vel_list = [xvel]
-        self.x_vel_list = [yvel]
-        self.x_vel_list = [zvel]
+        self.y_vel_list = [yvel]
+        self.z_vel_list = [zvel]
         # accelleration list
         self.x_accel_list = [xaccel]
         self.y_accel_list = [yaccel]

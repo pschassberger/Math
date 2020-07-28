@@ -45,7 +45,7 @@ def calculations(time, planet_1, planet_2):
         r_val.append(dradii)'''
         # inverse of 3 cube
         rcube_inv_list=[]
-        rcube_inv = 1.0 / np.pow(radii_list[i], 3)
+        rcube_inv = 1.0 / np.power(radii_list[i], 3)
         rcube_inv_list.append(rcube_inv)
         '''dr_cube = 1.0 / r_val[i+1]**3
         cube_val.append(dr_cube)'''
@@ -68,13 +68,26 @@ def calculations(time, planet_1, planet_2):
         day = -y_pos[i+1] * cube_val[i+1]
         x_accel.append(dax)
         y_accel.append(day)'''
-        
         # velocities
-        dvx = x_vel[i] + x_accel[i+1] * dt
+        # planet 1
+        dvx_pln1 = planet_1.x_vel_list[i] + planet_1.x_accel_list[i+1] * dt
+        planet_1.x_vel_list.append(dvx_pln1)
+        dvy_pln1 = planet_1.y_vel_list[i] + planet_1.y_accel_list[i+1] * dt
+        planet_1.y_vel_list.append(dvy_pln1)
+        dvz_pln1 = planet_1.z_vel_list[i] + planet_1.z_accel_list[i+1] * dt
+        planet_1.z_vel_list.append(dvz_pln1)
+        # planet 2
+        dvx_pln2 = planet_2.x_vel_list[i] + planet_2.x_accel_list[i+1] * dt
+        planet_2.x_vel_list.append(dvx_pln2)
+        dvy_pln2 = planet_2.y_vel_list[i] + planet_2.y_accel_list[i+1] * dt
+        planet_2.y_vel_list.append(dvy_pln2)
+        dvz_pln2 = planet_2.z_vel_list[i] + planet_2.z_accel_list[i+1] * dt
+        planet_2.z_vel_list.append(dvz_pln2)
+        '''dvx = x_vel[i] + x_accel[i+1] * dt
         dvy = y_vel[i] + y_accel[i+1] * dt
         x_vel.append(dvx)
-        y_vel.append(dvy)
-        print(dx_pln1)
+        y_vel.append(dvy)'''
+    print(planet_1.x_pos_list, planet_1.y_pos_list)
 
         # fin
     # plot 
