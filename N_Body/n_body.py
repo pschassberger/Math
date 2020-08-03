@@ -103,8 +103,8 @@ def calculations(time, planet_1, planet_2):
     plt.scatter(earth.x_pos_list, earth.y_pos_list, color="blue")
     plt.ylim(-2*AU, 2*AU)
     plt.xlim(-2*AU, 2*AU)
+    #plt.savefig("Orbital.png")
     plt.show()
-    
 calculations(365, sun, earth)
 
 
