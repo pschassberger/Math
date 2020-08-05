@@ -58,18 +58,18 @@ def calculations(time, planet_1, planet_2):
         cube_val.append(dr_cube)'''
         # acceleration
         #planet 1
-        dax_pln1 = -planet_1.x_pos_list[i+1] * rcube_inv_list[i] * GC * planet_2.mass
+        dax_pln1 = -(planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
         planet_1.x_accel_list.append(dax_pln1)
-        day_pln1 = -planet_1.y_pos_list[i+1] * rcube_inv_list[i] * GC * planet_2.mass
+        day_pln1 = -(planet_1.y_pos_list[i+1] - planet_2.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
         planet_1.y_accel_list.append(day_pln1)
-        daz_pln1 = -planet_1.z_pos_list[i+1] * rcube_inv_list[i] * GC * planet_2.mass
+        daz_pln1 = -(planet_1.z_pos_list[i+1] - planet_2.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
         planet_1.z_accel_list.append(daz_pln1)
         #planet 2
-        dax_pln2 = -planet_2.x_pos_list[i+1] * rcube_inv_list[i] * GC * planet_1.mass
+        dax_pln2 = -(planet_2.x_pos_list[i+1] - planet_1.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
         planet_2.x_accel_list.append(dax_pln2)
-        day_pln2 = -planet_2.y_pos_list[i+1] * rcube_inv_list[i] * GC * planet_1.mass
+        day_pln2 = -(planet_2.y_pos_list[i+1] - planet_1.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
         planet_2.y_accel_list.append(day_pln2)
-        daz_pln2 = -planet_2.z_pos_list[i+1] * rcube_inv_list[i] * GC * planet_1.mass
+        daz_pln2 = -(planet_2.z_pos_list[i+1] - planet_1.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
         planet_2.z_accel_list.append(daz_pln2)
         '''dax = -x_pos[i+1] * cube_val[i+1]
         day = -y_pos[i+1] * cube_val[i+1]
