@@ -21,8 +21,3 @@ class Planet:
         self.y_accel_list = [yaccel]
         self.z_accel_list = [zaccel]
     
-
-sun = Planet("Sun", M_SUN, 20, 20, 20, 0, 0, 0, 0, 0, 0)
-earth = Planet("Earth", M_EARTH, AU, 0, 0, -0.2, 1.630, 0, -4.0, 0, 0)
-sun.y_pos_list.append(45)
-#print(sun.y_pos_list)

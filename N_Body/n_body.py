@@ -41,22 +41,21 @@ def calculations(time, planet_1, planet_2):
         dz_pln2 = planet_2.z_pos_list[i] + planet_2.z_vel_list[i] * dt
         planet_2.z_pos_list.append(dz_pln2)
         
-        # raddii, accelerations
+        # raddii, acceleration r = sqrt((xi - xj)**2 + (yi - yj)**2 + (zi - zj)**2)
         dr_radii = np.sqrt((planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1])**2 
                             + (planet_1.y_pos_list[i+1] - planet_2.y_pos_list[i+1])**2
                             + (planet_1.z_pos_list[i+1] - planet_2.z_pos_list[i+1])**2)
         radii_list.append(dr_radii)
-        '''dradii = np.sqrt(x_pos[i+1]**2 + y_pos[i+1]**2 + z_pos[i+1]**2)
-        r_val.append(dradii)'''
-        # inverse of 3 cube
+        
+        # inverse of r**3 cube
         if radii_list[i+1] > 0.0:
             rcube_inv = 1.0 / radii_list[i+1]**3
             rcube_inv_list.append(rcube_inv)
         else:
             rcube_inv_list.append(0)
-        '''dr_cube = 1.0 / r_val[i+1]**3
-        cube_val.append(dr_cube)'''
+        
         # acceleration
+        # dv/dt = -Gm(xi-xj) / r**3
         #planet 1
         dax_pln1 = -(planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
         planet_1.x_accel_list.append(dax_pln1)
@@ -71,10 +70,7 @@ def calculations(time, planet_1, planet_2):
         planet_2.y_accel_list.append(day_pln2)
         daz_pln2 = -(planet_2.z_pos_list[i+1] - planet_1.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
         planet_2.z_accel_list.append(daz_pln2)
-        '''dax = -x_pos[i+1] * cube_val[i+1]
-        day = -y_pos[i+1] * cube_val[i+1]
-        x_accel.append(dax)
-        y_accel.append(day)'''
+        
         # velocities
         # planet 1
         dvx_pln1 = planet_1.x_vel_list[i] + planet_1.x_accel_list[i+1] * dt
@@ -90,12 +86,9 @@ def calculations(time, planet_1, planet_2):
         planet_2.y_vel_list.append(dvy_pln2)
         dvz_pln2 = planet_2.z_vel_list[i] + planet_2.z_accel_list[i+1] * dt
         planet_2.z_vel_list.append(dvz_pln2)
-        '''dvx = x_vel[i] + x_accel[i+1] * dt
-        dvy = y_vel[i] + y_accel[i+1] * dt
-        x_vel.append(dvx)
-        y_vel.append(dvy)'''
+        
 
-    print(planet_2.x_pos_list, planet_2.y_pos_list)
+    #print(planet_2.x_pos_list, planet_2.y_pos_list)
 
     # fin
     # plot 
