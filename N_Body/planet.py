@@ -21,3 +21,12 @@ class Planet:
         self.y_accel_list = [yaccel]
         self.z_accel_list = [zaccel]
     
+
+from astroquery.jplhorizons import Horizons
+
+obj = Horizons(id='399', location='10',
+            epochs={'start':'2017-10-01',
+                    'stop':'2017-10-02',
+                    'step':'10m'})
+vec = obj.vectors()  
+print(vec[])

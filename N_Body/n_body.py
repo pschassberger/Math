@@ -11,12 +11,12 @@ AU = 150e6
 
 # construct planets
 sun = Planet("Sun", M_SUN, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-earth = Planet("Earth", M_EARTH, AU, 0.0, 0.0, -1.918e-12, 1.63e1, 0.0, -4.44e-17, 0.0, 0.0)
+earth = Planet("Earth", M_EARTH, AU, 0.0, 0.0, -1.918e-12, 1.63e3, 0.0, -4.44e-17, 0.0, 0.0)
 
 # calculation
 def calculations(time, planet_1, planet_2):
     # time increment
-    dt = 3600 * 24
+    dt = 3600 * 3
     radii_list=[]
     dr_radii = np.sqrt((planet_1.x_pos_list[0] - planet_2.x_pos_list[0])**2 
                         + (planet_1.y_pos_list[0] - planet_2.y_pos_list[0])**2
@@ -55,7 +55,7 @@ def calculations(time, planet_1, planet_2):
             rcube_inv_list.append(0)
         
         # acceleration
-        # dv/dt = -Gm(xi-xj) / r**3
+        # mjdv/dt = -G*mj*mi(xi-xj) / r**3
         #planet 1
         dax_pln1 = -(planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
         planet_1.x_accel_list.append(dax_pln1)
@@ -88,17 +88,17 @@ def calculations(time, planet_1, planet_2):
         planet_2.z_vel_list.append(dvz_pln2)
         
 
-    #print(planet_2.x_pos_list, planet_2.y_pos_list)
+    print(planet_2.x_vel_list, planet_2.y_vel_list)
 
     # fin
     # plot 
     plt.scatter(sun.x_pos_list, sun.y_pos_list, color="yellow")
     plt.scatter(earth.x_pos_list, earth.y_pos_list, color="blue")
     plt.ylim(-2*AU, 2*AU)
-    plt.xlim(-2*AU, 2*AU)
+    plt.xlim(-2*AU, 6*AU)
     #plt.savefig("Orbital.png")
     plt.show()
     
-calculations(365, sun, earth)
+calculations(10, sun, earth)
 
 
