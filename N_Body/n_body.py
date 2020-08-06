@@ -27,18 +27,18 @@ def calculations(time, planet_1, planet_2):
     for i in range(time):
         # x,y,z coords via x = x + velocity * time
         #planet_1
-        dx_pln1 = planet_1.x_pos_list[i] + planet_1.x_vel_list[i] * dt
+        dx_pln1 = planet_1.x_pos_list[i] + planet_1.x_vel_list[i] / GC * dt * planet_2.mass
         planet_1.x_pos_list.append(dx_pln1)
-        dy_pln1 = planet_1.y_pos_list[i] + planet_1.y_vel_list[i] * dt
+        dy_pln1 = planet_1.y_pos_list[i] + planet_1.y_vel_list[i] / GC * dt * planet_2.mass
         planet_1.y_pos_list.append(dy_pln1)
-        dz_pln1 = planet_1.z_pos_list[i] + planet_1.z_vel_list[i] * dt
+        dz_pln1 = planet_1.z_pos_list[i] + planet_1.z_vel_list[i] / GC * dt * planet_2.mass
         planet_1.z_pos_list.append(dz_pln1)
         #planet_2
-        dx_pln2 = planet_2.x_pos_list[i] + planet_2.x_vel_list[i] * dt
+        dx_pln2 = planet_2.x_pos_list[i] + planet_2.x_vel_list[i] / GC * dt * planet_1.mass
         planet_2.x_pos_list.append(dx_pln2)
-        dy_pln2 = planet_2.y_pos_list[i] + planet_2.y_vel_list[i] * dt
+        dy_pln2 = planet_2.y_pos_list[i] + planet_2.y_vel_list[i] / GC * dt * planet_1.mass
         planet_2.y_pos_list.append(dy_pln2)
-        dz_pln2 = planet_2.z_pos_list[i] + planet_2.z_vel_list[i] * dt
+        dz_pln2 = planet_2.z_pos_list[i] + planet_2.z_vel_list[i] / GC * dt * planet_1.mass
         planet_2.z_pos_list.append(dz_pln2)
         
         # raddii, acceleration r = sqrt((xi - xj)**2 + (yi - yj)**2 + (zi - zj)**2)
@@ -57,18 +57,18 @@ def calculations(time, planet_1, planet_2):
         # acceleration
         # mjdv/dt = -G*mj*mi(xi-xj) / r**3
         #planet 1
-        dax_pln1 = -(planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
+        dax_pln1 = -(planet_1.x_pos_list[i+1] - planet_2.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass * dt
         planet_1.x_accel_list.append(dax_pln1)
-        day_pln1 = -(planet_1.y_pos_list[i+1] - planet_2.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
+        day_pln1 = -(planet_1.y_pos_list[i+1] - planet_2.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass * dt
         planet_1.y_accel_list.append(day_pln1)
-        daz_pln1 = -(planet_1.z_pos_list[i+1] - planet_2.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass
+        daz_pln1 = -(planet_1.z_pos_list[i+1] - planet_2.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_2.mass * dt
         planet_1.z_accel_list.append(daz_pln1)
         #planet 2
-        dax_pln2 = -(planet_2.x_pos_list[i+1] - planet_1.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
+        dax_pln2 = -(planet_2.x_pos_list[i+1] - planet_1.x_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass * dt
         planet_2.x_accel_list.append(dax_pln2)
-        day_pln2 = -(planet_2.y_pos_list[i+1] - planet_1.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
+        day_pln2 = -(planet_2.y_pos_list[i+1] - planet_1.y_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass * dt
         planet_2.y_accel_list.append(day_pln2)
-        daz_pln2 = -(planet_2.z_pos_list[i+1] - planet_1.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass
+        daz_pln2 = -(planet_2.z_pos_list[i+1] - planet_1.z_pos_list[i+1]) * rcube_inv_list[i] * GC * planet_1.mass * dt
         planet_2.z_accel_list.append(daz_pln2)
         
         # velocities
@@ -99,6 +99,6 @@ def calculations(time, planet_1, planet_2):
     #plt.savefig("Orbital.png")
     plt.show()
     
-calculations(10, sun, earth)
+calculations(365, sun, earth)
 
 
